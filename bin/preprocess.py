@@ -1,10 +1,10 @@
 from bin.utils import *
 import os
-import tqdm
+from tqdm import tqdm
 from collections import defaultdict
 
 
-jieba.load_userdict("../etc/sougou.txt")
+#jieba.load_userdict("../etc/sougou.txt")
 
 class CorpusPath:
     CLEAR_PARTICIPLE_PATH="../data/clear_partice_电力语料.txt"
@@ -60,8 +60,14 @@ def corpus_filter_by_in(my_list):
     :param my_list:
     :return:
     """
+    print("Begin load corpus")
     corpus_text = load_dianli_corpus_text()
-    result = [word for word in my_list if word in corpus_text]
+    print("Done load corpus")
+    result = []
+    for word in tqdm(my_list):
+        if word in corpus_text:
+            result.append(word)
+    # result = [word for word in tqdm(my_list) if word in corpus_text]
     return result
 
 def corpus_word_count(corput_path=CorpusPath.CLEAR_PARTICIPLE_PATH):

@@ -2,7 +2,7 @@ import re
 import jieba
 
 zh_pattern = re.compile(u'[\u4e00-\u9fa5]+')
-dianli_corpus_filepath="../etc/电力语料.txt"
+dianli_corpus_filepath="../data/corpus/电力语料.txt"
 
 def contain_zh(word):
     '''
@@ -110,8 +110,7 @@ def load_dianli_corpus_text(my_path = dianli_corpus_filepath):
     """
     result = ""
     with open(my_path,mode="r",encoding="utf8") as fr:
-        for line in fr.readlines():
-            result += line
+        result = " ".join(fr.readlines())
     return result
 
 def load_dianli_corpus_list(my_path = dianli_corpus_filepath):
@@ -121,6 +120,5 @@ def load_dianli_corpus_list(my_path = dianli_corpus_filepath):
     """
     result = []
     with open(my_path,mode="r",encoding="utf8") as fr:
-        for line in fr.readlines():
-            result.append(line.strip())
+        result = list(fr.readlines())
     return result
