@@ -5,7 +5,6 @@ from tqdm import tqdm
 url = "https://zhuanye.911cha.com/list_6_"
 url_final = "https://zhuanye.911cha.com/list_6_200.html"
 
-
 def crawled_url(url):
     """
     爬去一个网页，返回单词列表
@@ -49,5 +48,6 @@ def crawl_all():
 
     save_list(result,"../data/crawled.csv")
     save_list(error_url,"../data/error_url.txt")
+
 if __name__ == "__main__":
     crawl_all()
