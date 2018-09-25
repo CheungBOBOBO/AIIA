@@ -2,13 +2,13 @@ from bin.utils import *
 import os
 from tqdm import tqdm
 from collections import defaultdict
-
+from multiprocessing import Pool
 
 #jieba.load_userdict("../etc/sougou.txt")
 
 class CorpusPath:
-    CLEAR_PARTICIPLE_PATH="../data/clear_partice_电力语料.txt"
-    CLEAR_PATH="../data/clear_电力语料.txt"
+    CLEAR_PARTICIPLE_PATH="../data/corpus/clear_partice_电力语料.txt"
+    CLEAR_PATH="../data/corpus/clear_电力语料.txt"
 
 def corpus_split_lines():
     """
@@ -41,6 +41,7 @@ def corpus_filter_lines():
     # 写文件
     print(len(result_lines))
     save_list(result_lines,CorpusPath.CLEAR_PATH)
+    return CorpusPath.CLEAR_PATH
 
 def corpus_participle():
     """
@@ -60,14 +61,14 @@ def corpus_filter_by_in(my_list):
     :param my_list:
     :return:
     """
-    print("Begin load corpus")
     corpus_text = load_dianli_corpus_text()
-    print("Done load corpus")
-    result = []
-    for word in tqdm(my_list):
-        if word in corpus_text:
-            result.append(word)
-    # result = [word for word in tqdm(my_list) if word in corpus_text]
+    # result = []
+    # for word in tqdm(my_list):
+    #     if word in corpus_text:
+    #         result.append(word)
+
+    result = [word for word in tqdm(my_list) if word in corpus_text]
+
     return result
 
 def corpus_word_count(corput_path=CorpusPath.CLEAR_PARTICIPLE_PATH):
