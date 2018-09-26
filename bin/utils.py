@@ -95,12 +95,12 @@ def save_list(list_my, file_path):
 def load_dict(file_path):
     dict_out = {}
     with open(file_path, mode="r", encoding="utf8") as fr:
-        for line in fr.readlines():
+        for line in fr:
             if line.count(",") != 1 :
                 continue
             word = line.strip().split(",")[0]
             freq = line.strip().split(",")[-1]
-            dict_out[word] = freq
+            dict_out[word] = int(freq)
     return dict_out
 
 def load_dianli_corpus_text(my_path = dianli_corpus_filepath):
@@ -120,5 +120,5 @@ def load_dianli_corpus_list(my_path = dianli_corpus_filepath):
     """
     result = []
     with open(my_path,mode="r",encoding="utf8") as fr:
-        result = [line.strip() for line in list(fr.readlines())]
+        result = [line.strip() for line in fr]
     return result
