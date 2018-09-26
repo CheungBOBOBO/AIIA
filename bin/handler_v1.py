@@ -52,4 +52,6 @@ def main():
 
 
 if __name__ == "__main__":
+    # text = load_dianli_corpus_text()
+    # print("大地" in text)
     main()

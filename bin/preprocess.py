@@ -62,12 +62,13 @@ def corpus_filter_by_in(my_list):
     :return:
     """
     corpus_text = load_dianli_corpus_text()
-    # result = []
-    # for word in tqdm(my_list):
-    #     if word in corpus_text:
-    #         result.append(word)
+    print(len(corpus_text))
+    result = []
+    for word in tqdm(my_list):
+        if word in corpus_text:
+            result.append(word)
 
-    result = [word for word in tqdm(my_list) if word in corpus_text]
+    # result = [word for word in tqdm(my_list) if word in corpus_text]
 
     return result
 

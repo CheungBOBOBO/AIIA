@@ -90,7 +90,7 @@ def save_list(list_my, file_path):
     """
     with open(file_path, mode="w", encoding="utf8") as fw:
         for line in list_my:
-            fw.write("{}".format(line))
+            fw.write("{}\n".format(line))
 
 def load_dict(file_path):
     dict_out = {}
@@ -110,7 +110,7 @@ def load_dianli_corpus_text(my_path = dianli_corpus_filepath):
     """
     result = ""
     with open(my_path,mode="r",encoding="utf8") as fr:
-        result = " ".join(fr.readlines())
+        result = " ".join(list(fr.readlines()))
     return result
 
 def load_dianli_corpus_list(my_path = dianli_corpus_filepath):
@@ -120,5 +120,5 @@ def load_dianli_corpus_list(my_path = dianli_corpus_filepath):
     """
     result = []
     with open(my_path,mode="r",encoding="utf8") as fr:
-        result = list(fr.readlines())
+        result = [line.strip() for line in list(fr.readlines())]
     return result
