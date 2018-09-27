@@ -96,11 +96,14 @@ def load_dict(file_path):
     dict_out = {}
     with open(file_path, mode="r", encoding="utf8") as fr:
         for line in fr:
-            if line.count(",") != 1 :
-                continue
-            word = line.strip().split(",")[0]
-            freq = line.strip().split(",")[-1]
-            dict_out[word] = int(freq)
+            try:
+                if line.count(",") != 1 :
+                    continue
+                word = line.strip().split(",")[0]
+                freq = line.strip().split(",")[-1]
+                dict_out[word] = int(freq)
+            except Exception as e:
+                pass
     return dict_out
 
 def load_dianli_corpus_text(my_path = dianli_corpus_filepath):

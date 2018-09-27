@@ -7,7 +7,7 @@ from multiprocessing import Pool
 #jieba.load_userdict("../etc/sougou.txt")
 
 class CorpusPath:
-    CLEAR_PARTICIPLE_PATH="../data/corpus/clear_partice_电力语料.txt"
+    CLEAR_PARTICIPLE_PATH="../data/corpus/clear_partice.txt"
     CLEAR_PATH="../data/corpus/clear_电力语料.txt"
 
 def corpus_split_lines():

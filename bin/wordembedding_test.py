@@ -1,6 +1,7 @@
 import multiprocessing
 from bin.utils import *
 from tqdm import tqdm
+import numpy as np
 # 导入模型
 # model = gensim.models.KeyedVectors.load_word2vec_format("../etc/sgns.wiki.word",binary=False,encoding="utf8")
 #
@@ -53,8 +54,20 @@ def func2():
 
 def train():
     from gensim.models import word2vec
-    sentences = word2vec.LineSentence("../data/corpus/clear_partice_电力语料.txt")
+    sentences = word2vec.LineSentence("../data/corpus/clear_partice.txt")
     model = word2vec.Word2Vec(sentences,hs=1, min_count=1,window=3,iter=100,size=100,workers=multiprocessing.cpu_count())
 
     model.save("../etc/dianli_model_my.bin")
-train()
+
+def testmodel():
+    from gensim.models import word2vec
+    model = word2vec.Word2Vec.load("../etc/dianli_model_my.bin")
+    print(model.wv.vocab.keys())
+    print(model.vector_size)
+    print(model["电网"].shape)
+    # for key in model.wv.similar_by_word("变压器"):
+    #     print(key)
+# testmodel()
+sentence_vector = np.zeros(shape=(100,))
+sentence_vector[1]=1
+print(sentence_vector)
